@@ -1,0 +1,17 @@
+*.ged
+*.gedcom
+*.gdz
+*.json
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.zip
+.env
+.env.*
+imports/
+uploads/
+exports/
+feedback/
+node_modules/
+.DS_Store

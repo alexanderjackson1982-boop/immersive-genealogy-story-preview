@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src blob:; connect-src 'none'; img-src 'self'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="A browser-local story preview of unverified GEDCOM assertions. No file upload or external AI.">
+  <title>Immersive Genealogy · Story Preview</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to preview</a>
+  <header class="site-header">
+    <div class="wordmark"><span class="tree-mark" aria-hidden="true">✣</span><span>Immersive Genealogy<small>Story Preview · Beta 0.1</small></span></div>
+    <span class="privacy-badge">● &nbsp; On your device</span>
+  </header>
+  <main id="main">
+    <section class="intro" aria-labelledby="intro-title">
+      <p class="eyebrow">A family history worth exploring</p>
+      <h1 id="intro-title">Names become beginnings.<br><em>Evidence leads the story.</em></h1>
+      <p class="intro-copy">Choose up to three historical people from your tree. Read their recorded story, explore its context, and consider the questions still waiting for evidence.</p>
+      <p class="boundary">Every personal claim is an unverified assertion from your GEDCOM. This preview checks no archives and uses no external AI.</p>
+    </section>
+    <section id="import-panel" class="import-card" aria-labelledby="import-title">
+      <div class="import-heading"><div><p class="eyebrow">Start with your own tree</p><h2 id="import-title">Open your GEDCOM</h2></div><button id="demo" class="secondary">Try the fictional demo</button></div>
+      <p>GEDCOM 5.5.1 · UTF-8 · Up to 5 MiB. You can use your normal export, including living people.</p>
+      <div class="privacy-note">
+        <h3>Your file stays here</h3>
+        <p><strong>This website is public; your GEDCOM stays in this browser.</strong> GitHub records ordinary website-visit information, including IP addresses, for security. The preview does not upload your file, stories or feedback. Only use it on a device and browser you trust.</p>
+        <p>The existing viewer’s privacy filter hides living, unknown, recently deceased, private and contradictory records. Only eligible people with recorded deaths before 1926 are shown. Notes, contact fields, media, occupations and source prose are omitted.</p>
+        <p>Tree, stories and feedback are held only for this browser session. Clear, refresh or leaving the page removes them from the preview. Access expires after 30 minutes without activity or two hours in total.</p>
+        <label class="consent"><input id="consent" type="checkbox"><span>I authorise reading my file and applying privacy filters on this device.</span></label>
+      </div>
+      <div class="file-row"><label class="file-control" for="gedcom">Choose a GEDCOM file<input id="gedcom" type="file" accept=".ged,.gedcom" disabled aria-describedby="file-help"></label><button id="read-tree" class="primary" disabled>Read my tree →</button></div>
+      <p id="file-help" class="small">Your original file is unchanged. Automatic filtering cannot guarantee anonymity in names and places; check before sharing screenshots or downloaded feedback.</p>
+    </section>
+    <div class="status-row"><p id="status" role="status" aria-live="polite">No file has been read.</p><button id="clear-tree" class="text-button" disabled>Clear tree, stories &amp; feedback</button></div>
+    <noscript><p class="notice">JavaScript is required to read the file locally.</p></noscript>
+    <section id="tree-panel" hidden aria-label="Story workspace">
+      <p id="demo-banner" class="demo-banner" hidden>FICTIONAL DEMO · These people and GEDCOM assertions are invented for testing. They are not your ancestors or archive discoveries.</p>
+      <div id="summary" class="summary-grid"></div>
+      <details class="import-notes"><summary>Privacy and import notes</summary><div id="notices"></div></details>
+      <div class="workspace">
+        <aside class="people-pane" aria-labelledby="people-title">
+          <p class="eyebrow">Your story collection</p><h2 id="people-title">Choose up to three</h2>
+          <p class="small">The file does not establish how these people relate to you. Choose people you recognise as ancestors.</p>
+          <label class="search-label" for="search">Find a name</label><input id="search" type="search" placeholder="Search historical people…" autocomplete="off">
+          <p id="selection-count" class="selection-count" aria-live="polite">0 of 3 selected</p><p id="people-count" class="small"></p>
+          <div id="people-list" class="people-list"></div>
+          <div class="pagination"><button id="previous" class="secondary">Previous</button><span id="page-number" class="small"></span><button id="next" class="secondary">Next</button></div>
+          <p class="small">Thin records can be browsed, but need more supported detail before they can become a story.</p>
+        </aside>
+        <article class="detail-pane" aria-label="Selected story">
+          <div id="collection" class="collection" aria-label="Selected stories"></div>
+          <div id="person-detail"></div>
+        </article>
+      </div>
+      <section id="feedback-export" class="export-panel" hidden aria-labelledby="export-title">
+        <div><h2 id="export-title">Keep your feedback</h2><p class="small">Download only when you are ready. No feedback is sent anywhere. Written comments may contain family details.</p><label class="consent"><input type="checkbox" id="include-names"><span>Include displayed ancestor names in my feedback file</span></label></div><button id="download-feedback" class="secondary">Download feedback</button>
+      </section>
+      <p id="session-note" class="session-note"></p>
+    </section>
+  </main>
+  <footer><p>Keep the wonder. Keep uncertainty visible.</p><p>Local preview · Offline narration · No archive verification</p></footer>
+</body>
+</html>
